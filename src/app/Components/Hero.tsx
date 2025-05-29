@@ -122,7 +122,9 @@ export default function HeroSection() {
       </div>
 
       {/* Right Column with Image */}
-      <div className="hidden md:flex md:w-1/2 justify-center">
+      
+      <div className="w-full md:w-1/2 flex justify-center mt-10 md:mt-0">
+
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
