@@ -14,7 +14,7 @@ import blog from "@/app/Assets/blog.png"
 import unitconv from "@/app/Assets/unitconv.jpg"
 import datasec from "@/app/Assets/secdata.png"
 import passwordmeter from "@/app/Assets/passwors.png"
-
+import Task from "@/app/Assets/task.png"
 const textVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: (i) => ({
@@ -75,6 +75,7 @@ export default function ProjectsSection() {
             <ProjectItem image={nike} link="https://marketplace2-nike-1t3e.vercel.app" label="E-Commerce Clone" />
             <ProjectItem image={appi} link="https://milestone03-rho.vercel.app" label="Use API" />
             <ProjectItem image={blog} link="https://blog-website-eight-red.vercel.app" label="Blog Website" />
+            <ProjectItem image={Task} link="https://task-manager-git-main-mehwish-maliks-projects.vercel.app/login" label="Task Manager" />
           </div>
         </div>
 
