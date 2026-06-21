@@ -61,25 +61,52 @@ export default function AboutSection() {
   return (
     <main className="bg-background">
       <Navbar />
+
+      {/* Section Divider - Visual Separator between Hero and About */}
+      <div className="relative w-full h-24 md:h-32 bg-gradient-to-b from-background via-gold/5 to-background">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "80%" }}
+            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="h-[2px] bg-gradient-to-r from-transparent via-gold/30 to-transparent"
+          />
+        </div>
+      </div>
+
       <motion.section
         id="about"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="min-h-screen relative text-white py-32 px-6 flex flex-col items-center justify-start overflow-hidden"
+        className="min-h-screen relative text-white pt-16 md:pt-32 pb-32 px-6 flex flex-col items-center justify-start overflow-hidden"
       >
         <NeuralNetworkBg />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-surface/50 to-background pointer-events-none" />
 
         <div className="relative z-10 max-w-6xl mx-auto">
-          {/* Profile Image */}
+          {/* Section Label - Mobile visibility improver */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-8 md:mb-12"
+          >
+            <span className="inline-block px-6 py-2 bg-gold/10 border-2 border-gold/30 rounded-full text-gold text-sm md:text-base font-semibold tracking-wider uppercase">
+              About Me
+            </span>
+          </motion.div>
+
+          {/* Profile Image - Hidden on small mobile, visible on tablet+ */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="flex justify-center mb-12"
+            className="hidden sm:flex justify-center mb-12"
           >
             <div className="relative">
               <motion.div
