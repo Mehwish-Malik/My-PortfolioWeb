@@ -56,10 +56,11 @@ export const metadata: Metadata = {
     description: 'AI Engineer specializing in Agentic AI, AI-Driven Development, and Full Stack Applications. Building intelligent systems with Python, TypeScript, and Next.js.',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image.svg',
         width: 1200,
         height: 630,
         alt: 'Mehwish Malik - AI Engineer',
+        type: 'image/svg+xml',
       },
     ],
   },
@@ -67,7 +68,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Mehwish Malik | AI Engineer & Full Stack Developer',
     description: 'AI Engineer specializing in Agentic AI, AI-Driven Development, and Full Stack Applications.',
-    images: ['/og-image.png'],
+    images: ['/og-image.svg'],
     creator: '@mehwishmalik',
   },
   robots: {
@@ -91,9 +92,9 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
-  verification: {
-    google: 'your-google-verification-code',
-  },
+  // verification: {
+  //   google: 'your-google-verification-code', // Add this when you verify with Google Search Console
+  // },
 };
 
 export default function RootLayout({

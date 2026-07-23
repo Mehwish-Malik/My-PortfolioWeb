@@ -32,6 +32,18 @@ export default function ProjectsSection() {
 
   // Featured project - Most relevant AI work
   const featuredProject = {
+    title: "RAG Chatbot",
+    tagline: "Retrieval-Augmented Generation chatbot with FastAPI backend and SQLite vector search",
+    image: roboticsbook,
+    link: "https://github.com/Mehwish-Malik/rag-chatbot",
+    problem: "Static documents and knowledge bases make it hard for users to get quick, accurate answers without manually searching through content.",
+    solution: "Built a Retrieval-Augmented Generation chatbot using FastAPI for the backend and SQLite for vector similarity search, combined with an LLM API to generate grounded, context-aware answers over technical documentation.",
+    tech: ["FastAPI", "Python", "SQLite", "RAG", "LLM APIs", "Embeddings"],
+    impact: "Delivered a lightweight, self-contained RAG architecture without external vector database dependencies — demonstrating end-to-end understanding of embeddings, retrieval, and LLM-based generation.",
+    isCodeOnly: true,
+  };
+
+  const secondaryFeaturedProject = {
     title: "AI Humanoid Robotics Book",
     tagline: "Comprehensive digital book on humanoid robotics built with spec-driven development and AI-powered tooling",
     image: roboticsbook,
@@ -163,16 +175,26 @@ export default function ProjectsSection() {
             Python, Next.js, and full-stack applications solving real problems
           </motion.p>
 
-          {/* Featured Project - Large Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mb-20"
-          >
-            <FeaturedProjectCard {...featuredProject} />
-          </motion.div>
+          {/* Featured Projects - Large Cards */}
+          <div className="mb-20 space-y-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <FeaturedProjectCard {...featuredProject} />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <FeaturedProjectCard {...secondaryFeaturedProject} />
+            </motion.div>
+          </div>
 
           {/* Main Projects Grid */}
           <div className="mb-20">
@@ -222,7 +244,7 @@ export default function ProjectsSection() {
   );
 }
 
-function FeaturedProjectCard({ title, tagline, image, link, problem, solution, tech, impact }) {
+function FeaturedProjectCard({ title, tagline, image, link, problem, solution, tech, impact, isCodeOnly }) {
   return (
     <motion.div
       whileHover={{ y: -8, boxShadow: "0 25px 50px rgba(201, 169, 97, 0.25)" }}
@@ -315,7 +337,7 @@ function FeaturedProjectCard({ title, tagline, image, link, problem, solution, t
             className="inline-flex items-center gap-2 text-gold hover:text-gold-dark
               font-semibold transition-colors text-sm group/link"
           >
-            View Live Project
+            {isCodeOnly ? "View Code on GitHub" : "View Live Project"}
             <FaExternalLinkAlt className="text-sm group-hover/link:translate-x-1 transition-transform" />
           </Link>
         </div>

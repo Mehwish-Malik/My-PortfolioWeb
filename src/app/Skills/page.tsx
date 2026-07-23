@@ -117,6 +117,15 @@ export default function SkillsSection() {
     { name: "Docusaurus" },
   ];
 
+  const backend = [
+    { name: "FastAPI" },
+    { name: "SQLite" },
+    { name: "REST APIs" },
+    { name: "Database Design" },
+    { name: "Docker" },
+    { name: "Kubernetes" },
+  ];
+
   return (
     <main className="bg-background">
       <Navbar />
@@ -205,10 +214,17 @@ export default function SkillsSection() {
           />
 
           <SkillCategory
+            title="Backend"
+            description="Server-side technologies and infrastructure"
+            skills={backend}
+            delay={0.5}
+          />
+
+          <SkillCategory
             title="Tools"
             description="Development tools and platforms"
             skills={tools}
-            delay={0.5}
+            delay={0.6}
           />
         </div>
       </motion.section>
