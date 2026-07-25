@@ -14,15 +14,16 @@ import passwordmeter from "@/app/Assets/passwors.png";
 import roboticsbook from "@/app/Assets/ai-robotics.webp";
 import { FaExternalLinkAlt, FaRocket, FaCheckCircle } from "react-icons/fa";
 import { TbBulb, TbTarget } from "react-icons/tb";
+import { shouldReduceMotion } from "@/app/utils/animations";
 
 const textVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: shouldReduceMotion() ? 0 : 50 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: i * 0.2,
-      duration: 0.6,
+      delay: shouldReduceMotion() ? 0 : i * 0.15,
+      duration: shouldReduceMotion() ? 0.01 : 0.4,
     },
   }),
 };
@@ -131,7 +132,7 @@ export default function ProjectsSection() {
         id="projects"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: shouldReduceMotion() ? 0.01 : 0.5 }}
         viewport={{ once: true }}
         className="min-h-screen text-white py-32 px-6 relative overflow-hidden"
       >
@@ -169,7 +170,7 @@ export default function ProjectsSection() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
+            transition={{ delay: shouldReduceMotion() ? 0 : 0.4, duration: shouldReduceMotion() ? 0.01 : 0.4 }}
             className="text-center text-gold-light/80 text-base md:text-lg mb-20 max-w-2xl mx-auto"
           >
             Python, Next.js, and full-stack applications solving real problems
@@ -178,18 +179,18 @@ export default function ProjectsSection() {
           {/* Featured Projects - Large Cards */}
           <div className="mb-20 space-y-12">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: shouldReduceMotion() ? 0 : 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: shouldReduceMotion() ? 0.01 : 0.5, delay: shouldReduceMotion() ? 0 : 0.2 }}
               viewport={{ once: true }}
             >
               <FeaturedProjectCard {...featuredProject} />
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: shouldReduceMotion() ? 0 : 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: shouldReduceMotion() ? 0.01 : 0.5, delay: shouldReduceMotion() ? 0 : 0.3 }}
               viewport={{ once: true }}
             >
               <FeaturedProjectCard {...secondaryFeaturedProject} />
@@ -205,9 +206,9 @@ export default function ProjectsSection() {
               {projects.map((project, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: shouldReduceMotion() ? 0 : 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                  transition={{ duration: shouldReduceMotion() ? 0.01 : 0.4, delay: shouldReduceMotion() ? 0 : 0.2 + index * 0.08 }}
                   viewport={{ once: true }}
                 >
                   <ProjectCard {...project} />
@@ -228,9 +229,9 @@ export default function ProjectsSection() {
               {foundationProjects.map((project, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: shouldReduceMotion() ? 0 : 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
+                  transition={{ duration: shouldReduceMotion() ? 0.01 : 0.3, delay: shouldReduceMotion() ? 0 : 0.1 + index * 0.08 }}
                   viewport={{ once: true }}
                 >
                   <ProjectCard {...project} isFoundation />
@@ -247,9 +248,10 @@ export default function ProjectsSection() {
 function FeaturedProjectCard({ title, tagline, image, link, problem, solution, tech, impact, isCodeOnly }) {
   return (
     <motion.div
-      whileHover={{ y: -8, boxShadow: "0 25px 50px rgba(201, 169, 97, 0.25)" }}
+      whileHover={shouldReduceMotion() ? {} : { y: -8, boxShadow: "0 25px 50px rgba(201, 169, 97, 0.25)" }}
+      transition={{ duration: 0.3 }}
       className="bg-surface border-2 border-gold rounded-2xl overflow-hidden
-        shadow-2xl transition-all duration-500 group"
+        shadow-2xl transition-all duration-300 group"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
         {/* Image Side */}
@@ -261,7 +263,7 @@ function FeaturedProjectCard({ title, tagline, image, link, problem, solution, t
             src={image}
             alt={title}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-700"
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60" />
         </div>
@@ -349,8 +351,12 @@ function FeaturedProjectCard({ title, tagline, image, link, problem, solution, t
 function ProjectCard({ title, image, link, problem, solution, tech, impact, isFoundation }) {
   return (
     <motion.div
-      whileHover={{ y: -5, boxShadow: isFoundation ? "0 15px 30px rgba(139, 115, 85, 0.15)" : "0 20px 40px rgba(201, 169, 97, 0.2)" }}
-      className={`bg-surface border-2 transition-all duration-500 group h-full flex flex-col rounded-2xl overflow-hidden shadow-xl ${
+      whileHover={shouldReduceMotion() ? {} : {
+        y: -5,
+        boxShadow: isFoundation ? "0 15px 30px rgba(139, 115, 85, 0.15)" : "0 20px 40px rgba(201, 169, 97, 0.2)"
+      }}
+      transition={{ duration: 0.3 }}
+      className={`bg-surface border-2 transition-all duration-300 group h-full flex flex-col rounded-2xl overflow-hidden shadow-xl ${
         isFoundation
           ? "border-gold-dark/30 hover:border-gold-dark/50"
           : "border-gold/20 hover:border-gold"
@@ -362,7 +368,7 @@ function ProjectCard({ title, image, link, problem, solution, tech, impact, isFo
           src={image}
           alt={title}
           fill
-          className="object-cover group-hover:scale-110 transition-transform duration-700"
+          className="object-cover group-hover:scale-110 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-70" />
       </div>

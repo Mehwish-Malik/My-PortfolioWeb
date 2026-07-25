@@ -6,6 +6,7 @@ import { FaArrowRight, FaEnvelope, FaGithub, FaLinkedin, FaDownload } from "reac
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Myimg from "@/app/Assets/best.png";
+import { fadeIn, hoverScale, shouldReduceMotion } from "@/app/utils/animations";
 
 // Floating particles component
 function FloatingParticles() {
@@ -126,9 +127,9 @@ export default function HeroSection() {
 
           {/* Greeting */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: shouldReduceMotion() ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: shouldReduceMotion() ? 0.01 : 0.4 }}
             className="text-lg md:text-xl text-gold-light font-light tracking-wide"
           >
             Hi, I&apos;m
@@ -136,9 +137,9 @@ export default function HeroSection() {
 
           {/* Open to Work Badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: shouldReduceMotion() ? 1 : 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: shouldReduceMotion() ? 0.01 : 0.3, delay: shouldReduceMotion() ? 0 : 0.2 }}
             className="inline-flex items-center gap-2 bg-gold/10 border-2 border-gold px-4 py-2 rounded-full mb-4"
           >
             <motion.div
@@ -158,15 +159,30 @@ export default function HeroSection() {
             </span>
           </motion.div>
 
-          {/* Animated Name */}
-          <div className="text-5xl md:text-7xl font-bold leading-tight">
-            <span className="bg-gradient-to-r from-gold-light via-gold to-gold-dark bg-clip-text text-transparent inline-flex flex-wrap">
+          {/* Animated Name with Gold Glow */}
+          <div className="text-5xl md:text-7xl font-bold leading-tight relative">
+            {/* Subtle pulsing gold glow behind text */}
+            <motion.div
+              className="absolute inset-0 blur-3xl opacity-30 pointer-events-none"
+              animate={shouldReduceMotion() ? {} : {
+                opacity: [0.2, 0.4, 0.2],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              style={{
+                background: "radial-gradient(ellipse at center, #c9a961 0%, transparent 70%)",
+              }}
+            />
+            <span className="bg-gradient-to-r from-gold-light via-gold to-gold-dark bg-clip-text text-transparent inline-flex flex-wrap relative z-10">
               {"Mehwish Malik".split("").map((char, i) => (
                 <motion.span
                   key={i}
-                  initial={{ opacity: 0, y: -20 }}
+                  initial={{ opacity: 0, y: shouldReduceMotion() ? 0 : -20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.05, duration: 0.5 }}
+                  transition={{ delay: shouldReduceMotion() ? 0 : 0.1 + i * 0.03, duration: shouldReduceMotion() ? 0.01 : 0.3 }}
                   className="inline-block"
                 >
                   {char === " " ? "\u00A0" : char}
@@ -177,9 +193,9 @@ export default function HeroSection() {
 
           {/* Main Headline */}
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: shouldReduceMotion() ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
+            transition={{ delay: shouldReduceMotion() ? 0 : 0.5, duration: shouldReduceMotion() ? 0.01 : 0.4 }}
             className="text-2xl md:text-4xl font-bold text-white leading-snug tracking-wide"
           >
             Building AI Agents, Intelligent Systems & AI-Powered Products
@@ -187,9 +203,7 @@ export default function HeroSection() {
 
           {/* Subheadline */}
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
+            {...fadeIn(0.7)}
             className="text-base md:text-lg text-gold-light leading-relaxed max-w-2xl"
           >
             AI Engineer specializing in <span className="text-gold font-semibold">Agentic AI</span>, <span className="text-gold font-semibold">AI-Driven Development</span>, Python, TypeScript, Next.js and <span className="text-gold font-semibold">Intelligent Automation</span>.
@@ -197,28 +211,32 @@ export default function HeroSection() {
 
           {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.6, duration: 0.6 }}
+            {...fadeIn(0.9)}
             className="flex flex-col sm:flex-row gap-4 pt-4"
           >
             {/* Primary Button */}
             <motion.a
               href="/Projects"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(201, 169, 97, 0.5)" }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center bg-gold hover:bg-gold-dark text-black px-8 py-4 rounded-lg font-semibold text-base transition-all shadow-lg"
+              {...hoverScale(1.05)}
+              whileHover={{
+                scale: shouldReduceMotion() ? 1 : 1.05,
+                boxShadow: shouldReduceMotion() ? undefined : "0 0 25px rgba(201, 169, 97, 0.5)",
+              }}
+              className="inline-flex items-center justify-center bg-gold hover:bg-gold-dark text-black px-8 py-4 rounded-lg font-semibold text-base transition-colors duration-300 shadow-lg"
             >
               View Projects <FaArrowRight className="ml-2" />
             </motion.a>
 
             {/* Secondary Button - Download Resume */}
             <motion.a
-              href="/Mehwish-Malik-Resume.pdf"
+              href="/Resume/Mehwish-Malik-Resume.pdf"
               download="Mehwish-Malik-Resume.pdf"
-              whileHover={{ scale: 1.05, borderColor: "#c9a961" }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center bg-transparent border-2 border-gold/50 hover:border-gold text-gold-light hover:text-gold px-8 py-4 rounded-lg font-semibold text-base transition-all"
+              {...hoverScale(1.05)}
+              whileHover={{
+                scale: shouldReduceMotion() ? 1 : 1.05,
+                borderColor: shouldReduceMotion() ? undefined : "#c9a961",
+              }}
+              className="inline-flex items-center justify-center bg-transparent border-2 border-gold/50 hover:border-gold text-gold-light hover:text-gold px-8 py-4 rounded-lg font-semibold text-base transition-all duration-300"
             >
               <FaDownload className="mr-2" /> Download Resume
             </motion.a>
@@ -226,9 +244,12 @@ export default function HeroSection() {
             {/* Tertiary Button - Contact */}
             <motion.a
               href="/Contact"
-              whileHover={{ scale: 1.05, borderColor: "#c9a961" }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center bg-transparent border-2 border-gold-dark hover:border-gold text-gold-light hover:text-gold px-8 py-4 rounded-lg font-semibold text-base transition-all"
+              {...hoverScale(1.05)}
+              whileHover={{
+                scale: shouldReduceMotion() ? 1 : 1.05,
+                borderColor: shouldReduceMotion() ? undefined : "#c9a961",
+              }}
+              className="inline-flex items-center justify-center bg-transparent border-2 border-gold-dark hover:border-gold text-gold-light hover:text-gold px-8 py-4 rounded-lg font-semibold text-base transition-all duration-300"
             >
               <FaEnvelope className="mr-2" /> Contact Me
             </motion.a>
@@ -236,9 +257,7 @@ export default function HeroSection() {
 
           {/* Social Icons */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2, duration: 0.6 }}
+            {...fadeIn(1.1)}
             className="flex gap-6 text-3xl justify-center md:justify-start pt-6"
           >
             <Link
@@ -272,12 +291,11 @@ export default function HeroSection() {
 
           {/* Contact Info Text - More Prominent */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2.2, duration: 0.6 }}
+            {...fadeIn(1.2)}
             className="text-center md:text-left mt-4 space-y-2"
           >
             <p className="text-gold-light text-sm">
+              
               📧 <a href="mailto:malik.mehwish0078@gmail.com" className="hover:text-gold transition-colors">malik.mehwish0078@gmail.com</a>
             </p>
             <p className="text-gold-light text-sm">
@@ -289,15 +307,15 @@ export default function HeroSection() {
         {/* Right Column - Image */}
         <div className="w-full md:w-1/2 flex justify-center items-center mt-10 md:mt-0">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: shouldReduceMotion() ? 1 : 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            transition={{ delay: shouldReduceMotion() ? 0 : 0.3, duration: shouldReduceMotion() ? 0.01 : 0.5 }}
             className="relative"
           >
             {/* Glowing ring effect */}
             <motion.div
               className="absolute inset-0 rounded-full"
-              animate={{
+              animate={shouldReduceMotion() ? {} : {
                 boxShadow: [
                   "0 0 20px rgba(201, 169, 97, 0.3)",
                   "0 0 40px rgba(201, 169, 97, 0.5)",
@@ -320,9 +338,9 @@ export default function HeroSection() {
 
             {/* Floating badge */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: shouldReduceMotion() ? 0 : 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2, duration: 0.6 }}
+              transition={{ delay: shouldReduceMotion() ? 0 : 1.1, duration: shouldReduceMotion() ? 0.01 : 0.4 }}
               className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-surface border-2 border-gold px-6 py-2 rounded-full"
             >
               <p className="text-gold font-semibold text-sm tracking-wide">

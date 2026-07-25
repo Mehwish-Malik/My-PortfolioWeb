@@ -12,6 +12,7 @@ import {
 import { TbBrain, TbRobotFace, TbNetwork, TbSparkles, TbBrandOpenai } from "react-icons/tb";
 import { HiCode } from "react-icons/hi";
 import Navbar from "@/app/Components/Navbar";
+import { shouldReduceMotion } from "@/app/utils/animations";
 
 type SkillItemProps = {
   name: string;
@@ -21,13 +22,14 @@ type SkillItemProps = {
 function SkillItem({ name, icon }: SkillItemProps) {
   return (
     <motion.div
-      whileHover={{
+      whileHover={shouldReduceMotion() ? {} : {
         y: -4,
         boxShadow: "0 8px 20px rgba(201, 169, 97, 0.25)",
         borderColor: "#c9a961"
       }}
+      transition={{ duration: 0.2 }}
       className="px-5 py-3 bg-surface/80 backdrop-blur-sm border-2 border-gold-dark/50
-        rounded-lg transition-all duration-300 group cursor-default
+        rounded-lg transition-all duration-200 group cursor-default
         hover:bg-surface flex items-center gap-3 justify-center"
     >
       {icon && (
@@ -53,9 +55,9 @@ type SkillCategoryProps = {
 function SkillCategory({ title, description, skills, delay = 0 }: SkillCategoryProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: shouldReduceMotion() ? 0 : 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
+      transition={{ duration: shouldReduceMotion() ? 0.01 : 0.4, delay: shouldReduceMotion() ? 0 : delay }}
       viewport={{ once: true }}
       className="mb-16 last:mb-0"
     >
@@ -74,9 +76,12 @@ function SkillCategory({ title, description, skills, delay = 0 }: SkillCategoryP
         {skills.map((skill, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: shouldReduceMotion() ? 1 : 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: delay + index * 0.05, duration: 0.3 }}
+            transition={{
+              delay: shouldReduceMotion() ? 0 : delay + index * 0.05,
+              duration: shouldReduceMotion() ? 0.01 : 0.3
+            }}
             viewport={{ once: true }}
           >
             <SkillItem {...skill} />
@@ -133,7 +138,7 @@ export default function SkillsSection() {
         id="skills"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: shouldReduceMotion() ? 0.01 : 0.5 }}
         viewport={{ once: true }}
         className="min-h-screen relative text-white py-32 px-6 overflow-hidden"
       >
@@ -168,11 +173,11 @@ export default function SkillsSection() {
               <motion.span
                 key={index}
                 variants={{
-                  hidden: { opacity: 0, y: 20 },
+                  hidden: { opacity: 0, y: shouldReduceMotion() ? 0 : 20 },
                   visible: {
                     opacity: 1,
                     y: 0,
-                    transition: { duration: 0.6, ease: "easeInOut" },
+                    transition: { duration: shouldReduceMotion() ? 0.01 : 0.4, ease: "easeInOut" },
                   },
                 }}
                 className="inline-block"
@@ -185,7 +190,7 @@ export default function SkillsSection() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.6 }}
+            transition={{ delay: shouldReduceMotion() ? 0 : 0.5, duration: shouldReduceMotion() ? 0.01 : 0.4 }}
             className="text-center text-gold-light text-base md:text-lg mb-20"
           >
             Building intelligent systems with modern tools and frameworks
