@@ -1,18 +1,21 @@
- import AboutSection from "./About/page";
 import Hero from "./Components/Hero"
-import Navbar from "./Components/Navbar";
-import ContactSection from "./Contact/page";
-import ProjectsSection from "./Projects/page";
-import SkillsSection from "./Skills/page";
+import AboutSection from "./About/page"
+import SkillsSection from "./Skills/page"
+import ProjectsSection from "./Projects/page"
+import AIEngineeringShowcase from "./AIEngineeringShowcase/page"
+import ContactSection from "./Contact/page"
+import Footer from "./Components/Footer"
+
 export default function Home() {
   return (
-  <main>
-    <Navbar />
+    <main>
       <Hero />
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />
+      <AIEngineeringShowcase />
       <ContactSection />
+      <Footer />
     </main>
   );
 }

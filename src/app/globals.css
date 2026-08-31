@@ -2,5 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-    
+  body {
+    @apply antialiased;
+    background-color: #0A0E27;
+    color: #FFFFFF;
+  }
+
+  /* Better text rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Selection colors */
+  ::selection {
+    background-color: rgba(139, 92, 246, 0.3);
+    color: #FFFFFF;
+  }
+
+  /* Focus styles */
+  *:focus-visible {
+    outline: 2px solid rgba(139, 92, 246, 0.5);
+    outline-offset: 2px;
+  }
+
+  /* Remove default link styles */
+  a {
+    text-decoration: none;
+  }
+
+  /* Better image rendering */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(139, 92, 246, 0.05);
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.3);
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.5);
+  }
+
+  /* Animation utilities */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

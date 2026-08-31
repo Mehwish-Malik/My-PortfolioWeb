@@ -12,22 +12,22 @@ export default function GitHubShowcase() {
 
   const topLanguagesUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&title_color=c9a961&text_color=d4c5b9&bg_color=0a0a0a&border_color=8b7355&hide_border=false`;
 
-  const streakStatsUrl = `https://github-readme-streak-stats.herokuapp.com/?user=${GITHUB_USERNAME}&theme=transparent&background=0a0a0a&border=8b7355&stroke=8b7355&ring=c9a961&fire=c9a961&currStreakNum=d4c5b9&sideNums=d4c5b9&currStreakLabel=c9a961&sideLabels=c9a961&dates=d4c5b9`;
+  const streakStatsUrl = `https://streak-stats.demolab.com/?user=${GITHUB_USERNAME}&theme=transparent&background=0a0a0a&border=8b7355&stroke=8b7355&ring=c9a961&fire=c9a961&currStreakNum=d4c5b9&sideNums=d4c5b9&currStreakLabel=c9a961&sideLabels=c9a961&dates=d4c5b9`;
 
   const pinnedRepos = [
     {
-      name: "AI-Resume-Builder",
+      name: "ai-resume-assistant",
       description: "Intelligent resume generation with AI optimization",
       language: "TypeScript",
       stars: 0,
-      url: "https://github.com/Mehwish-Malik",
+      url: "https://github.com/Mehwish-Malik/ai-resume-assistant",
     },
     {
       name: "Task-Manager",
       description: "Agentic task management with AI-driven prioritization",
       language: "TypeScript",
       stars: 0,
-      url: "https://github.com/Mehwish-Malik",
+      url: "https://github.com/Mehwish-Malik/Task-Manager",
     },
   ];
 

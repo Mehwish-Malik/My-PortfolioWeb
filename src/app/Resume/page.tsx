@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaDownload, FaEye, FaPrint } from "react-icons/fa";
-import Navbar from "@/app/Components/Navbar";
 
 // Floating particles component
 function FloatingParticles() {
@@ -69,8 +68,6 @@ export default function ResumePage() {
 
   return (
     <main className="min-h-screen bg-background text-white relative overflow-hidden">
-      <Navbar />
-
       {/* Background Effects */}
       <FloatingParticles />
       <NeuralNetworkBg />

@@ -1,274 +1,181 @@
 "use client";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaEnvelope, FaBriefcase, FaCheckCircle } from "react-icons/fa";
-import Navbar from "@/app/Components/Navbar";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import Link from "next/link";
 
-// Animated constellation background
-function ConstellationBg() {
-  const stars = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 2 + 1,
-    delay: Math.random() * 3,
-  }));
-
+export default function ContactSection() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {stars.map((star) => (
+    <section
+      id="contact"
+      className="relative min-h-screen bg-surface text-foreground py-32 px-6 flex items-center overflow-hidden"
+    >
+      {/* Background gradients */}
+      <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+
+      <div className="relative z-10 max-w-4xl mx-auto w-full text-center">
+
+        {/* Main CTA */}
         <motion.div
-          key={star.id}
-          className="absolute bg-gold rounded-full"
-          style={{
-            left: `${star.x}%`,
-            top: `${star.y}%`,
-            width: `${star.size}px`,
-            height: `${star.size}px`,
-          }}
-          animate={{
-            opacity: [0.2, 1, 0.2],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            delay: star.delay,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-soft border border-border mb-8">
+            <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+            <span className="text-sm text-accent">Available for opportunities</span>
+          </span>
+        </motion.div>
 
-export default function ContactSection(): JSX.Element {
-  const opportunities = [
-    { icon: <FaBriefcase />, title: "AI Engineering", description: "Building intelligent systems and LLM applications" },
-    { icon: <FaCheckCircle />, title: "Agentic AI", description: "Multi-agent systems and autonomous workflows" },
-    { icon: <FaBriefcase />, title: "Software Engineering", description: "Full-stack development with modern frameworks" },
-  ];
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+        >
+          Let's Build Something
+          <span className="block text-primary">Intelligent Together</span>
+        </motion.h2>
 
-  const contactMethods = [
-    {
-      icon: <FaEnvelope />,
-      label: "Email",
-      value: "malik.mehwish0078@gmail.com",
-      href: "mailto:malik.mehwish0078@gmail.com",
-      description: "Best for detailed inquiries",
-      primary: true,
-    },
-    {
-      icon: <FaLinkedin />,
-      label: "LinkedIn",
-      value: "Connect & Message",
-      href: "https://www.linkedin.com/in/mehwish-malik-b548412ba",
-      description: "Professional networking",
-      primary: false,
-    },
-    {
-      icon: <FaGithub />,
-      label: "GitHub",
-      value: "View My Code",
-      href: "https://github.com/Mehwish-Malik",
-      description: "Open source contributions",
-      primary: false,
-    },
-  ];
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="text-lg md:text-xl text-accent-muted mb-12 max-w-2xl mx-auto leading-relaxed"
+        >
+          I'm open to full-time roles, contract work, and consulting opportunities
+          in AI engineering and agentic system development.
+        </motion.p>
 
-  return (
-    <main className="bg-background">
-      <Navbar />
-      <motion.section
-        id="contact"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="min-h-screen text-white py-32 px-6 flex flex-col items-center justify-center relative overflow-hidden"
-      >
-        {/* Constellation background */}
-        <ConstellationBg />
-
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-surface/30 to-background pointer-events-none" />
-
-        <div className="relative z-10 max-w-6xl mx-auto w-full">
-          {/* Main Heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
+        {/* Contact methods */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
+        >
+          {/* Email */}
+          <Link
+            href="mailto:malik.mehwish0078@gmail.com"
+            className="group relative p-8 rounded-2xl bg-surface-card border-2 border-primary hover:border-primary-light transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
           >
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6
-              bg-gradient-to-r from-gold-light via-gold to-gold-dark
-              bg-clip-text text-transparent tracking-wide">
-              Let&apos;s Work Together
-            </h2>
-
-            <p className="text-xl md:text-2xl text-gold-light font-semibold mb-4">
-              AI Engineer • Open to New Opportunities
-            </p>
-
-            <div className="inline-flex items-center gap-2 bg-gold/10 border-2 border-gold
-              px-6 py-2 rounded-full">
-              <div className="w-2.5 h-2.5 bg-gold rounded-full animate-pulse" />
-              <span className="text-gold font-semibold text-sm tracking-wide">
-                Available for Projects
-              </span>
+            <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4 mx-auto group-hover:scale-110 transition-transform">
+              <FaEnvelope size={24} />
             </div>
-          </motion.div>
+            <h3 className="text-lg font-semibold text-foreground mb-2">Email</h3>
+            <p className="text-sm text-accent-muted mb-3">Best for detailed inquiries</p>
+            <p className="text-sm text-primary font-medium">malik.mehwish0078@gmail.com</p>
+          </Link>
 
-          {/* Open To Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mb-16"
+          {/* LinkedIn */}
+          <Link
+            href="https://www.linkedin.com/in/mehwish-malik-b548412ba"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative p-8 rounded-2xl bg-surface-card border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 text-gold">
-              Open To Opportunities
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {opportunities.map((opp, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-surface border-2 border-gold-dark rounded-2xl p-6 text-center
-                    hover:border-gold transition-all duration-300"
-                >
-                  <div className="text-4xl text-gold mb-3 flex justify-center">
-                    {opp.icon}
-                  </div>
-                  <h4 className="text-lg font-bold text-gold-light mb-2">
-                    {opp.title}
-                  </h4>
-                  <p className="text-sm text-gold-light/70">
-                    {opp.description}
-                  </p>
-                </motion.div>
-              ))}
+            <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4 mx-auto group-hover:scale-110 transition-transform">
+              <FaLinkedin size={24} />
             </div>
-          </motion.div>
+            <h3 className="text-lg font-semibold text-foreground mb-2">LinkedIn</h3>
+            <p className="text-sm text-accent-muted mb-3">Professional networking</p>
+            <p className="text-sm text-primary font-medium">Connect with me</p>
+          </Link>
 
-          {/* Contact Methods */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            viewport={{ once: true }}
-            className="mb-12"
+          {/* GitHub */}
+          <Link
+            href="https://github.com/Mehwish-Malik"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative p-8 rounded-2xl bg-surface-card border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 text-gold">
-              Get In Touch
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {contactMethods.map((method, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(201, 169, 97, 0.3)" }}
-                >
-                  <Link
-                    href={method.href}
-                    target={method.href.startsWith("http") ? "_blank" : undefined}
-                    rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className={`block rounded-2xl p-8 transition-all duration-300 h-full flex flex-col items-center text-center
-                      ${
-                        method.primary
-                          ? "bg-gold border-2 border-gold hover:bg-gold-dark hover:border-gold-dark shadow-lg shadow-gold/20"
-                          : "bg-surface border-2 border-gold-dark hover:border-gold"
-                      }`}
-                  >
-                    <div
-                      className={`text-5xl mb-4 ${
-                        method.primary ? "text-background" : "text-gold"
-                      }`}
-                    >
-                      {method.icon}
-                    </div>
-
-                    <h4
-                      className={`text-xl font-bold mb-2 ${
-                        method.primary ? "text-background" : "text-gold-light"
-                      }`}
-                    >
-                      {method.label}
-                    </h4>
-
-                    <p
-                      className={`text-sm mb-3 ${
-                        method.primary ? "text-background/80" : "text-gold-light/70"
-                      }`}
-                    >
-                      {method.description}
-                    </p>
-
-                    <p
-                      className={`text-sm font-semibold ${
-                        method.primary ? "text-background" : "text-gold"
-                      }`}
-                    >
-                      {method.value}
-                    </p>
-                  </Link>
-                </motion.div>
-              ))}
+            <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4 mx-auto group-hover:scale-110 transition-transform">
+              <FaGithub size={24} />
             </div>
-          </motion.div>
+            <h3 className="text-lg font-semibold text-foreground mb-2">GitHub</h3>
+            <p className="text-sm text-accent-muted mb-3">Open source contributions</p>
+            <p className="text-sm text-primary font-medium">View my code</p>
+          </Link>
+        </motion.div>
 
-          {/* Additional Info */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <div className="bg-surface/50 border border-gold-dark/50 rounded-2xl p-8 max-w-3xl mx-auto">
-              <h4 className="text-xl font-bold text-gold mb-4">
-                What I Bring
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gold-light/80">
-                <div className="flex items-center justify-center gap-2">
-                  <FaCheckCircle className="text-gold" />
-                  <span>Full-time & Contract</span>
-                </div>
-                <div className="flex items-center justify-center gap-2">
-                  <FaCheckCircle className="text-gold" />
-                  <span>Remote & Hybrid</span>
-                </div>
-                <div className="flex items-center justify-center gap-2">
-                  <FaCheckCircle className="text-gold" />
-                  <span>Fast Response Time</span>
-                </div>
+        {/* What I'm looking for */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto p-8 rounded-2xl bg-surface-card border border-border"
+        >
+          <h3 className="text-xl font-bold mb-6 text-foreground">Open to Opportunities</h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+            <div className="space-y-2">
+              <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mx-auto">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
               </div>
+              <p className="font-medium text-foreground">AI Engineering Roles</p>
+              <p className="text-accent-muted">Full-time or contract</p>
             </div>
-          </motion.div>
 
-          {/* Footer Note */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.1 }}
-            viewport={{ once: true }}
-            className="text-center text-gold-light/60 text-sm mt-12"
-          >
-            Based in Pakistan • Open to global opportunities • Typically respond within 24 hours
-          </motion.p>
-        </div>
-      </motion.section>
-    </main>
+            <div className="space-y-2">
+              <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mx-auto">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+              <p className="font-medium text-foreground">Consulting Projects</p>
+              <p className="text-accent-muted">Agentic AI systems</p>
+            </div>
+
+            <div className="space-y-2">
+              <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mx-auto">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <p className="font-medium text-foreground">Remote-First</p>
+              <p className="text-accent-muted">Global collaboration</p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Quick facts */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
+          className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-accent-muted"
+        >
+          <div className="flex items-center gap-2">
+            <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span>Based in Pakistan</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Responds within 24 hours</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <span>Open to global opportunities</span>
+          </div>
+        </motion.div>
+
+      </div>
+    </section>
   );
 }

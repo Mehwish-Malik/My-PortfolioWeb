@@ -1,426 +1,221 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
-import Navbar from "@/app/Components/Navbar";
-import Pic from "@/app/Assets/best.png";
-import { FaRobot, FaCode, FaLaptopCode, FaPython } from "react-icons/fa";
-import { SiNextdotjs, SiTypescript, SiOpenai } from "react-icons/si";
-import { TbBrain } from "react-icons/tb";
-
-// Neural network background component
-function NeuralNetworkBg() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
-      <svg className="w-full h-full">
-        <line x1="20%" y1="0%" x2="20%" y2="100%" stroke="#c9a961" strokeWidth="0.5" />
-        <line x1="40%" y1="0%" x2="40%" y2="100%" stroke="#c9a961" strokeWidth="0.5" />
-        <line x1="60%" y1="0%" x2="60%" y2="100%" stroke="#c9a961" strokeWidth="0.5" />
-        <line x1="80%" y1="0%" x2="80%" y2="100%" stroke="#c9a961" strokeWidth="0.5" />
-        <line x1="0%" y1="25%" x2="100%" y2="25%" stroke="#c9a961" strokeWidth="0.5" />
-        <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="#c9a961" strokeWidth="0.5" />
-        <line x1="0%" y1="75%" x2="100%" y2="75%" stroke="#c9a961" strokeWidth="0.5" />
-        <circle cx="20%" cy="25%" r="2" fill="#c9a961" />
-        <circle cx="40%" cy="50%" r="2" fill="#c9a961" />
-        <circle cx="60%" cy="25%" r="2" fill="#c9a961" />
-        <circle cx="80%" cy="75%" r="2" fill="#c9a961" />
-      </svg>
-    </div>
-  );
-}
 
 export default function AboutSection() {
-  const journeySteps = [
-    {
-      icon: <FaLaptopCode />,
-      phase: "Frontend Development",
-      description: "Started building user interfaces. Learned the fundamentals of web development and what makes great UX.",
-    },
-    {
-      icon: <SiTypescript />,
-      phase: "TypeScript & Next.js",
-      description: "Discovered the power of type safety and server-side rendering. Built production apps with modern frameworks.",
-    },
-    {
-      icon: <FaPython />,
-      phase: "Python",
-      description: "Needed more computational power. Python opened doors to data processing, automation, and scripting.",
-    },
-    {
-      icon: <TbBrain />,
-      phase: "AI Engineering",
-      description: "The moment I integrated my first LLM API, everything clicked. Code could think, not just execute.",
-    },
-    {
-      icon: <FaRobot />,
-      phase: "Agentic AI",
-      description: "Now building systems that don't wait for instructions—they plan, decide, and act autonomously.",
-    },
-  ];
-
   return (
-    <main className="bg-background">
-      <Navbar />
+    <section
+      id="about"
+      className="relative min-h-screen bg-background text-foreground py-32 px-6 overflow-hidden"
+    >
+      {/* Subtle background gradient */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
 
-      {/* Section Divider - Visual Separator between Hero and About */}
-      <div className="relative w-full h-24 md:h-32 bg-gradient-to-b from-background via-gold/5 to-background">
-        <div className="absolute inset-0 flex items-center justify-center">
+      <div className="relative z-10 max-w-5xl mx-auto">
+
+        {/* Section label */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <span className="text-sm font-medium text-primary uppercase tracking-wider">
+            Who I Am
+          </span>
+        </motion.div>
+
+        {/* Main headline */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 leading-tight max-w-4xl"
+        >
+          Building production AI systems,
+          <span className="text-primary"> not proof-of-concepts</span>
+        </motion.h2>
+
+        {/* Two-column editorial layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-20">
+
+          {/* Left column */}
           <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: "80%" }}
-            transition={{ duration: 1, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="h-[2px] bg-gradient-to-r from-transparent via-gold/30 to-transparent"
-          />
-        </div>
-      </div>
-
-      <motion.section
-        id="about"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="min-h-screen relative text-white pt-16 md:pt-32 pb-32 px-6 flex flex-col items-center justify-start overflow-hidden"
-      >
-        <NeuralNetworkBg />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-surface/50 to-background pointer-events-none" />
-
-        <div className="relative z-10 max-w-6xl mx-auto">
-          {/* Section Label - Mobile visibility improver */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-8 md:mb-12"
-          >
-            <span className="inline-block px-6 py-2 bg-gold/10 border-2 border-gold/30 rounded-full text-gold text-sm md:text-base font-semibold tracking-wider uppercase">
-              About Me
-            </span>
-          </motion.div>
-
-          {/* Profile Image - Hidden on small mobile, visible on tablet+ */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="hidden sm:flex justify-center mb-12"
+            className="space-y-6"
           >
-            <div className="relative">
-              <motion.div
-                className="absolute inset-0 rounded-full blur-xl"
-                animate={{ opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                style={{ background: "radial-gradient(circle, #C8A97E 0%, transparent 70%)" }}
-              />
-              <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-gold shadow-2xl">
-                <Image
-                  src={Pic}
-                  alt="Mehwish Malik - AI Engineer"
-                  width={256}
-                  height={256}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-            </div>
+            <p className="text-lg text-accent leading-relaxed">
+              I'm Mehwish, an AI Engineer who specializes in building production-ready intelligent systems.
+              While others talk about AI potential, I'm building agentic workflows, RAG pipelines, and
+              AI-powered applications that deliver tangible value.
+            </p>
+
+            <p className="text-lg text-accent leading-relaxed">
+              My approach combines software engineering discipline with practical AI implementation.
+              I don't chase every new model release—I focus on architecting reliable systems that
+              businesses can depend on.
+            </p>
           </motion.div>
 
-          {/* Heading */}
-          <motion.h2
-            className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-gold-light via-gold to-gold-dark bg-clip-text text-transparent tracking-wide text-center"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.08 } },
-            }}
-          >
-            {"My Journey".split("").map((char, index) => (
-              <motion.span
-                key={index}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeInOut" } },
-                }}
-                className="inline-block"
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
-          </motion.h2>
-
-          {/* Story Introduction */}
+          {/* Right column */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="text-center max-w-4xl mx-auto mb-20 space-y-6"
+            className="space-y-6"
           >
-            <p className="text-lg md:text-xl leading-relaxed text-gold-light">
-              I&apos;m <span className="text-gold font-semibold">Mehwish Malik</span>, an AI Engineer who didn&apos;t start here. My path began with pixels and layouts, moved through type systems and frameworks, then found its purpose in <span className="text-gold font-semibold">intelligent systems that think</span>.
-            </p>
-            <p className="text-base md:text-lg leading-relaxed text-gold-light/80">
-              Each transition wasn&apos;t random—it was driven by hitting the limits of what I could build and asking, <span className="text-gold italic">&quot;What comes next?&quot;</span>
-            </p>
-          </motion.div>
-
-          {/* Journey Timeline */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            viewport={{ once: true }}
-            className="mb-20"
-          >
-            <div className="relative">
-              {/* Vertical connecting line */}
-              <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-gold via-gold-dark to-gold opacity-30" />
-
-              {journeySteps.map((step, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 + index * 0.15 }}
-                  viewport={{ once: true }}
-                  className={`relative flex items-center mb-16 last:mb-0 ${
-                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
-                >
-                  {/* Timeline dot */}
-                  <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-gold rounded-full border-4 border-background transform -translate-x-1/2 z-10" />
-
-                  {/* Content card */}
-                  <div className={`w-full md:w-5/12 ml-20 md:ml-0 ${index % 2 === 0 ? "md:mr-auto md:pr-12" : "md:ml-auto md:pl-12"}`}>
-                    <motion.div
-                      whileHover={{ y: -5, boxShadow: "0 15px 30px rgba(201, 169, 97, 0.2)" }}
-                      className="bg-surface border-2 border-gold-dark hover:border-gold rounded-xl p-6 transition-all duration-300"
-                    >
-                      <div className="flex items-center gap-4 mb-3">
-                        <div className="text-3xl text-gold">{step.icon}</div>
-                        <h3 className="text-xl font-bold text-gold-light">{step.phase}</h3>
-                      </div>
-                      <p className="text-gold-light/80 leading-relaxed">{step.description}</p>
-                    </motion.div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Current Focus */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.5 }}
-            viewport={{ once: true }}
-            className="text-center max-w-4xl mx-auto mb-12"
-          >
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-gold">Where I Am Now</h3>
-            <p className="text-lg md:text-xl leading-relaxed text-gold-light mb-6">
-              I build <span className="text-gold font-semibold">agentic AI systems</span> that combine everything I&apos;ve learned: the UX intuition from frontend work, the architecture skills from TypeScript, the computational power of Python, and the intelligence of modern LLMs.
-            </p>
-            <p className="text-base md:text-lg leading-relaxed text-gold-light/80">
-              These systems don&apos;t just respond—they <span className="text-gold">plan</span>, <span className="text-gold">reason</span>, and <span className="text-gold">execute</span> complex tasks autonomously. That&apos;s the kind of engineering that keeps me up at night, in the best way.
-            </p>
-          </motion.div>
-
-          {/* Professional Timeline */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.7 }}
-            viewport={{ once: true }}
-            className="mt-32 mb-20"
-          >
-            <h3 className="text-4xl md:text-5xl font-bold mb-4 text-center bg-gradient-to-r from-gold-light via-gold to-gold-dark bg-clip-text text-transparent">
-              Timeline
-            </h3>
-            <p className="text-center text-gold-light/70 mb-16 text-base md:text-lg">
-              My evolution as an engineer
+            <p className="text-lg text-accent leading-relaxed">
+              What sets my work apart is the intersection of strong engineering fundamentals with
+              deep AI systems understanding. I build with TypeScript and Python, design agentic
+              architectures with LangGraph, and implement RAG systems that actually improve with use.
             </p>
 
-            <div className="relative max-w-4xl mx-auto">
-              {/* Vertical line */}
-              <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-gold via-gold-dark to-gold opacity-30" />
+            <p className="text-lg text-accent leading-relaxed">
+              From banking AI platforms to autonomous workflow agents, my projects demonstrate
+              that AI engineering is about thoughtful system design, not just API integration.
+            </p>
 
-              {/* Timeline Items */}
-              <TimelineItem
-                year="2024"
-                title="Frontend Development"
-                description="Building responsive user interfaces with modern frameworks"
-                index={0}
-                delay={1.8}
-              />
-
-              <TimelineItem
-                year="2025"
-                title="Python and AI Foundations"
-                description="Expanding into backend development and AI fundamentals"
-                index={1}
-                delay={1.95}
-              />
-
-              <TimelineItem
-                year="2026"
-                title="AI Engineering"
-                items={["Agentic AI", "AI Driven Development"]}
-                description="Designing autonomous intelligent systems"
-                index={2}
-                delay={2.1}
-                highlight
-              />
-
-              <TimelineItem
-                year="Future"
-                title="Building the Future"
-                items={["Digital Workers", "AI Products", "AI Startups"]}
-                description="Creating the next generation of intelligent systems"
-                index={3}
-                delay={2.25}
-                future
-              />
-            </div>
-          </motion.div>
-
-          {/* Tech Stack */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 2.4 }}
-            viewport={{ once: true }}
-            className="flex justify-center items-center gap-8 flex-wrap"
-          >
-            <div className="text-gold text-5xl hover:text-gold-dark transition-colors" title="Python">
-              <FaPython />
-            </div>
-            <div className="text-gold text-5xl hover:text-gold-dark transition-colors" title="TypeScript">
-              <SiTypescript />
-            </div>
-            <div className="text-gold text-5xl hover:text-gold-dark transition-colors" title="Next.js">
-              <SiNextdotjs />
-            </div>
-            <div className="text-gold text-5xl hover:text-gold-dark transition-colors" title="AI">
-              <SiOpenai />
+            {/* Resume CTAs */}
+            <div className="flex flex-wrap gap-3 mt-4">
+              <a
+                href="/Resume/Mehwish-Malik-Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-dark text-background rounded-lg font-medium transition-all duration-300"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                View Resume
+              </a>
+              <a
+                href="/Resume/Mehwish-Malik-Resume.pdf"
+                download="Mehwish-Malik-Resume.pdf"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-transparent border-2 border-primary hover:bg-primary/10 text-primary rounded-lg font-medium transition-all duration-300"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Download
+              </a>
             </div>
           </motion.div>
         </div>
-      </motion.section>
-    </main>
-  );
-}
 
-type TimelineItemProps = {
-  year: string;
-  title: string;
-  items?: string[];
-  description: string;
-  index: number;
-  delay: number;
-  highlight?: boolean;
-  future?: boolean;
-};
-
-function TimelineItem({ year, title, items, description, index, delay, highlight, future }: TimelineItemProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6, delay }}
-      viewport={{ once: true }}
-      className={`relative flex items-center mb-16 last:mb-0 ${
-        index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-      }`}
-    >
-      {/* Timeline dot with glow effect */}
-      <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 z-10">
+        {/* What I focus on */}
         <motion.div
-          className={`w-5 h-5 rounded-full border-4 border-background ${
-            highlight ? "bg-gold" : future ? "bg-gold-dark" : "bg-gold-dark"
-          }`}
-          animate={
-            highlight || future
-              ? {
-                  boxShadow: [
-                    "0 0 0 0 rgba(201, 169, 97, 0.7)",
-                    "0 0 0 10px rgba(201, 169, 97, 0)",
-                    "0 0 0 0 rgba(201, 169, 97, 0)",
-                  ],
-                }
-              : {}
-          }
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </div>
-
-      {/* Content card */}
-      <div
-        className={`w-full md:w-5/12 ml-20 md:ml-0 ${
-          index % 2 === 0 ? "md:mr-auto md:pr-12" : "md:ml-auto md:pl-12"
-        }`}
-      >
-        <motion.div
-          whileHover={{
-            y: -8,
-            boxShadow: highlight || future ? "0 20px 40px rgba(201, 169, 97, 0.3)" : "0 15px 30px rgba(139, 115, 85, 0.2)",
-          }}
-          className={`p-6 md:p-8 rounded-2xl transition-all duration-300 ${
-            highlight
-              ? "bg-surface border-2 border-gold"
-              : future
-              ? "bg-gradient-to-br from-surface to-surface/80 border-2 border-gold-dark"
-              : "bg-surface border-2 border-gold-dark hover:border-gold"
-          }`}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="border-t border-border pt-16"
         >
-          {/* Year badge */}
-          <div
-            className={`inline-block px-4 py-1.5 rounded-full text-xs font-bold tracking-wider mb-4 ${
-              highlight
-                ? "bg-gold text-background"
-                : future
-                ? "bg-gradient-to-r from-gold to-gold-dark text-background"
-                : "bg-gold-dark/20 text-gold border border-gold-dark"
-            }`}
-          >
-            {year}
-          </div>
+          <h3 className="text-2xl font-bold mb-8 text-foreground">What I Focus On</h3>
 
-          {/* Title */}
-          <h4
-            className={`text-2xl md:text-3xl font-bold mb-3 ${
-              highlight || future ? "text-gold" : "text-gold-light"
-            }`}
-          >
-            {title}
-          </h4>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-          {/* Items (if any) */}
-          {items && items.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-3">
-              {items.map((item, i) => (
-                <span
-                  key={i}
-                  className="px-3 py-1 text-xs font-semibold bg-gold/10 text-gold border border-gold/30 rounded-full"
-                >
-                  {item}
-                </span>
-              ))}
+            <div className="space-y-3">
+              <div className="w-12 h-12 rounded-lg bg-surface-soft border border-border flex items-center justify-center">
+                <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h4 className="text-lg font-semibold text-foreground">Agentic AI</h4>
+              <p className="text-accent-muted text-sm leading-relaxed">
+                Multi-agent systems that coordinate, plan, and execute complex workflows autonomously.
+              </p>
             </div>
-          )}
 
-          {/* Description */}
-          <p className="text-gold-light/80 leading-relaxed text-sm md:text-base">
-            {description}
-          </p>
+            <div className="space-y-3">
+              <div className="w-12 h-12 rounded-lg bg-surface-soft border border-border flex items-center justify-center">
+                <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <h4 className="text-lg font-semibold text-foreground">RAG Systems</h4>
+              <p className="text-accent-muted text-sm leading-relaxed">
+                Retrieval-augmented generation that grounds AI responses in your data with precision.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <div className="w-12 h-12 rounded-lg bg-surface-soft border border-border flex items-center justify-center">
+                <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h4 className="text-lg font-semibold text-foreground">AI Automation</h4>
+              <p className="text-accent-muted text-sm leading-relaxed">
+                Intelligent workflows that reduce manual effort while maintaining quality and control.
+              </p>
+            </div>
+
+          </div>
         </motion.div>
+
+        {/* Tech approach */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
+          className="border-t border-border pt-16 mt-16"
+        >
+          <h3 className="text-2xl font-bold mb-8 text-foreground">How I Build</h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+            <div>
+              <h4 className="text-base font-semibold text-primary mb-4 uppercase tracking-wider">
+                Engineering Stack
+              </h4>
+              <ul className="space-y-3 text-accent">
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1.5">→</span>
+                  <span>TypeScript-first architecture with Next.js and React</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1.5">→</span>
+                  <span>Python for AI workflows and backend orchestration</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1.5">→</span>
+                  <span>PostgreSQL for reliable data persistence</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-base font-semibold text-primary mb-4 uppercase tracking-wider">
+                AI Architecture
+              </h4>
+              <ul className="space-y-3 text-accent">
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1.5">→</span>
+                  <span>LangGraph and CrewAI for agent orchestration</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1.5">→</span>
+                  <span>OpenAI, Claude, and Gemini model integration</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1.5">→</span>
+                  <span>Vector databases for semantic search and RAG</span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </motion.div>
+
       </div>
-    </motion.div>
+    </section>
   );
 }
