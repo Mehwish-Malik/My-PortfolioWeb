@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-import LogoImage from "@/app/Assets/logo.png";
 
 export default function AnimatedLogo() {
   const [isHovered, setIsHovered] = useState(false);
@@ -160,7 +159,7 @@ export default function AnimatedLogo() {
       {/* The actual logo - always sharp and stable */}
       <div className="relative w-full h-full z-10">
         <Image
-          src={LogoImage}
+          src="/logo.png"
           alt="WM Logo"
           fill
           className="object-contain"
